@@ -1,0 +1,346 @@
+/* Estilização geral e tema escuro */
+:root {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --accent-color: #6d28d9;
+  --accent-dark: #4c1d95;
+  --border-color: #334155;
+  --success-color: #22c55e;
+  --danger-color: #ef4444;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Responsividade para desktop */
+@media (min-width: 768px) {
+  .container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Header */
+.header {
+  width: 100%;
+  max-width: 1200px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.logo-text {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.barbershop-photo-container {
+  width: 0%;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.barbershop-photo {
+  width: 50%;
+  height: auto;
+  display: center;
+}
+
+/* Cards */
+.calendar-card,
+.details-card {
+  background-color: var(--bg-secondary);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Calendário */
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.month-year {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.nav-button {
+  background-color: var(--accent-color);
+  color: var(--text-primary);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.nav-button:hover {
+  background-color: var(--accent-dark);
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+}
+
+.day-name,
+.day-button {
+  text-align: center;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+}
+
+.day-name {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.day-button {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.day-button:hover:not(.disabled):not(.selected) {
+  background-color: var(--bg-primary);
+}
+
+.day-button.disabled {
+  color: var(--text-secondary);
+  cursor: not-allowed;
+  background-color: var(--bg-primary);
+  opacity: 0.5;
+}
+
+.day-button.selected {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.day-button.has-appointments {
+  position: relative;
+}
+
+.day-button.has-appointments::after {
+  content: '';
+  position: absolute;
+  bottom: 0.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: var(--success-color);
+  border-radius: 50%;
+}
+
+/* Formulário de Agendamento */
+.details-card.hidden {
+  display: none;
+}
+
+.appointment-form {
+  margin-top: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+.submit-button,
+.reset-button {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+}
+
+.submit-button {
+  background-color: var(--success-color);
+  color: var(--bg-primary);
+}
+
+.submit-button:hover {
+  background-color: #16a34a;
+}
+
+.reset-button {
+  background-color: var(--danger-color);
+  color: var(--text-primary);
+}
+
+.reset-button:hover {
+  background-color: #dc2626;
+}
+
+.disabled-text {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  margin-left: 0.5rem;
+}
+
+/* Histórico de agendamentos */
+.daily-history-container {
+  margin-top: 1.5rem;
+}
+
+.history-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.history-list {
+  list-style: none;
+  padding: 0;
+}
+
+.history-list li {
+  background-color: var(--bg-primary);
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-left: 4px solid var(--accent-color);
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: var(--bg-secondary);
+  padding: 2rem;
+  border-radius: 0.75rem;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.modal-content h3 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.close-button:hover {
+  color: var(--text-primary);
+
+}
+
+.modal.hidden {
+  display: none;
+}
+
+#cancellation-info {
+  margin-top: 1.5rem;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.whatsapp-link {
+  color: green;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.email-link {
+  color: var(--accent-color);
+  text-decoration: underline;
+  font-weight: bold;
+}

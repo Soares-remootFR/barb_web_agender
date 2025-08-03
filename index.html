@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barbershop - Agendamento</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    /* Adicionando um SVG para o ícone de tesoura */
+    .logo-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      margin-right: 0.5rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="logo-container">
+      <!-- Ícone de tesoura como logo -->
+      <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
+        fill="currentColor"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+        <path
+          d="M544 192c17.7 0 32 14.3 32 32s-14.3 32-32 32H448V384h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H448v32c0 17.7-14.3 32-32 32s-32-14.3-32-32V448H224v32c0 17.7-14.3 32-32 32s-32-14.3-32-32V448H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H128V256H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H128V128H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H128V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h320V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H480v64H544zM352 96v64H224V96H352zm64 64H384v-64h32c8.8 0 16-7.2 16-16V48c0-8.8-7.2-16-16-16H384V0H192V32h-32c-8.8 0-16 7.2-16 16v96c0 8.8 7.2 16 16 16h32v64H160v-64H128V96h32c8.8 0 16-7.2 16-16V48c0-8.8-7.2-16-16-16H128V0H448V32h32c8.8 0 16 7.2 16 16v96c0 8.8-7.2 16-16 16H448zM352 384v64H224V384H352zm64 64H384v-64h32c8.8 0 16-7.2 16-16V288c0-8.8-7.2-16-16-16H384v-32H192v32h-32c-8.8 0-16 7.2-16 16v96c0 8.8 7.2 16 16 16h32v64H160v-64H128V448h32c8.8 0 16 7.2 16 16v96c0 8.8-7.2 16-16 16H128V512H448V480h32c8.8 0 16-7.2 16-16V448H448zM192 192v64h192V192H192zM160 256v64h256V256H160z" />
+      </svg>
+      <span class="logo-text"><span>Barber Shop</span>
+    </div>
+    <div class="barbershop-photo-container">
+      <img src="images/logo_barb.jpg" alt="Foto da Barbearia" class="barbershop-photo">
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="calendar-card">
+      <h2 class="card-title">Agendamentos</h2>
+      <div class="calendar-header">
+        <button id="prev-month" class="nav-button">&lt;</button>
+        <h3 id="month-year" class="month-year"></h3>
+        <button id="next-month" class="nav-button">&gt;</button>
+      </div>
+      <div id="calendar-grid" class="calendar-grid">
+        <!-- Dias da semana -->
+        <div class="day-name">Dom</div>
+        <div class="day-name">Seg</div>
+        <div class="day-name">Ter</div>
+        <div class="day-name">Qua</div>
+        <div class="day-name">Qui</div>
+        <div class="day-name">Sex</div>
+        <div class="day-name">Sáb</div>
+        <!-- Dias do mês serão inseridos aqui pelo JS -->
+      </div>
+      <button id="reset-app-button" class="reset-button">Reiniciar e Apagar Agendamentos</button>
+    </div>
+
+    <div id="appointment-details" class="details-card hidden">
+      <h2 id="details-title" class="card-title">Agendar para</h2>
+      <div id="daily-history" class="daily-history-container">
+        <h4 class="history-title">Horários Agendados para o Dia:</h4>
+        <ul id="history-list" class="history-list"></ul>
+      </div>
+      <div id="appointment-form" class="appointment-form">
+        <form id="schedule-form">
+          <div class="form-group">
+            <label for="client-name">Seu Nome:</label>
+            <input type="text" id="client-name" name="client-name" required placeholder="Ex: João da Silva">
+          </div>
+          <div class="form-group">
+            <label for="client-contact">Seu Contato (Telefone):</label>
+            <input type="tel" id="client-contact" name="client-contact" required placeholder="Ex: (99) 99999-9999">
+          </div>
+          <div class="form-group">
+            <label for="service-type">Tipo de Serviço:</label>
+            <select id="service-type" name="service-type" required>
+              <option value="">Selecione um serviço</option>
+              <option value="Corte de Cabelo">Corte de Cabelo</option>
+              <option value="Barba">Barba</option>
+              <option value="Corte e Barba">Corte e Barba</option>
+              <option value="outro">Outro (especifique)</option>
+            </select>
+          </div>
+          <div id="other-service-container" class="form-group hidden">
+            <label for="other-service">Especifique o Serviço:</label>
+            <input type="text" id="other-service" name="other-service" placeholder="Ex: Penteado especial">
+          </div>
+          <div class="form-group">
+            <label for="time-slot">Horário:</label>
+            <select id="time-slot" name="time-slot" required>
+              <option value="">Selecione um horário</option>
+            </select>
+          </div>
+
+          <button type="submit" class="submit-button">Agendar</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h3 id="modal-message"></h3>
+      <p id="cancellation-info" class="hidden">Para cancelar, por favor, entre em contato com o barbeiro via WhatsApp:
+        <a href="https://wa.me/5519988085262" target="_blank" class="whatsapp-link">(12)-34567-8901</a>
+      </p>
+    </div>
+  </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
